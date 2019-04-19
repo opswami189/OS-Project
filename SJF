@@ -1,0 +1,51 @@
+#include <stdio.h>
+int main() 
+{
+      int AT[10], BT[10], var[10];
+      int k, MIN, counter = 0, tim, totalp;
+      double WT = 0, TAT = 0, CT;
+      float AVG_WT, AVG_TAT;
+      printf("\n\t\t\t**********SHORTEST JOB FIRST ALGORITHM (PREEMPTIVE)**********");
+      printf("\n\n\n\nEnter Total Number of Processes to be taken:\t");
+      scanf("%d", &totalp); 
+      printf("\nEnter Burst Time for all processes ::\n" );
+      for(k = 0; k < totalp; k++)
+      {   
+	        printf(" P%d  -\t",k+1);
+            scanf("%d", &BT[k]); 
+            var[k] = BT[k];
+      }
+      printf("\nEnter Arrival Time for all processes ::\n");
+      for(k = 0; k < totalp; k++)
+      {
+      	 printf(" P%d  -\t",k+1);
+		 scanf("%d", &AT[k]);
+	  }
+      BT[20] = 10000;  
+      for(tim = 0; counter != totalp; tim++)
+      {
+            MIN = 20;
+            for(k = 0; k < totalp; k++)
+            {
+                  if(AT[k] <= tim && BT[k] < BT[MIN] && BT[k] > 0)
+                  {
+                        MIN = k;
+                  }
+            }
+            BT[MIN]--;
+            if(BT[MIN] == 0)
+            {
+                  counter++;
+                  CT = tim + 1;
+                  WT = WT + CT - AT[MIN] - var[MIN];
+                  TAT = TAT + CT - AT[MIN];
+            }
+      }
+      AVG_WT = WT / totalp; 
+      AVG_TAT = TAT / totalp;
+      printf("\nThe results are::");
+      printf("\nAverage WaitingTime(AVG_WT):\t%f\n", AVG_WT);
+      printf("Average TurnAroundTime(AVG_TAT):\t\t%f\n", AVG_TAT);
+      return 0;
+}
+
