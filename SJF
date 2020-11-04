@@ -39,7 +39,7 @@ int main()
                   CT = tim + 1;
                   WT = WT + CT - AT[MIN] - var[MIN];
                   TAT = TAT + CT - AT[MIN];
-            }
+            }  
       }
       AVG_WT = WT / totalp; 
       AVG_TAT = TAT / totalp;
